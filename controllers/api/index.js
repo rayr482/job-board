@@ -4,7 +4,7 @@ const categoryRoutes = require('./categoryRoutes');
 const postRoutes = require('./postRoutes');
 
 router.use('/users', userRoutes);
-router.use('/category', categoryRoutes);
-router.use('/post', postRoutes);
+router.use('/categories', categoryRoutes);
+router.use('/posts', postRoutes);
 
 module.exports = router;
