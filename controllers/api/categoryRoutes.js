@@ -19,7 +19,7 @@ router.get('/' , async (req,res) => {
 
 router.get('/:id' , async (req,res) => {
     try {
-        const newCategory = await Category.findbypk ( req.params.id, { 
+        const categoryData = await Category.findbypk ( req.params.id, { 
             include: [
                 {
                     model: Post
@@ -27,12 +27,12 @@ router.get('/:id' , async (req,res) => {
             ]
         });
 
-        if (!newCategory) {
+        if (!categoryData) {
             res.status(404).json({ message: 'No Category found with this ID' });
             return;
         }
 
-        res.status(200).json(newCategory);
+        res.status(200).json(categoryData);
     } catch (err) {
         res.status(500).json(err);
     }

@@ -12,11 +12,11 @@ Post.belongsTo(User, {
 });
 
 Category.hasMany(Post, {
-    foreignKey: 'category_id'
+  foreignKey: 'category_id'
 });
 
 Post.belongsTo(Category, {
-    foreignKey: 'category_id'
+  foreignKey: 'category_id'
 });
 
 module.exports = { User, Category, Post };
