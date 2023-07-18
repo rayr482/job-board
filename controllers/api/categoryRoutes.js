@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const { Category, Post } = require ('../../models');
+const { Category, Post } = require('../../models');
 
 router.get('/' , async (req,res) => {
     try {
-        const newCategory = await Category.findAll ({
+        const newCategory = await Category.findAll({
             include: [
                 {
                     model: Post
@@ -19,7 +19,7 @@ router.get('/' , async (req,res) => {
 
 router.get('/:id' , async (req,res) => {
     try {
-        const newCategory = await Category.findbypk ( req.params.id, { 
+        const categoryData = await Category.findbypk( req.params.id, { 
             include: [
                 {
                     model: Post
@@ -27,12 +27,12 @@ router.get('/:id' , async (req,res) => {
             ]
         });
 
-        if (!newCategory) {
+        if (!categoryData) {
             res.status(404).json({ message: 'No Category found with this ID' });
             return;
         }
 
-        res.status(200).json(newCategory);
+        res.status(200).json(categoryData);
     } catch (err) {
         res.status(500).json(err);
     }
@@ -40,7 +40,7 @@ router.get('/:id' , async (req,res) => {
 
 router.post('/' , async (req,res) => {
     try {
-        const newCategory = await Category.create ({
+        const newCategory = await Category.create({
             category_name: req.body.category_name
         });
 
@@ -52,7 +52,7 @@ router.post('/' , async (req,res) => {
 
 router.delete('/:id' , async (req,res) => {
     try {
-        const newCategory = await Category.destroy ({
+        const newCategory = await Category.destroy({
             where: {
                 id: req.params.id
             }
