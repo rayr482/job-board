@@ -9,20 +9,16 @@
     <header>
       <div id="container">
         <h1 id="title">Job Board</h1>
-        <nav>
-          {{!-- {{#if logged_in}}
-            <a href="/profile">profile</a>
-            |
+       <nav>
+          {{#if logged_in}}
+          <ul>
+            <li> <a href="/">Home</a></li>
             <button class="no-button" id="logout">logout</button>
           {{else}}
-            <a href="/login">login</a>
-          {{/if}} --}}
-          <ul>
-            <li> <a href="#">Home</a></li>
-            <li> <a href="/dashboard">Dashboard</a></li>
-            <li> <a href="/login">Log In/Sign Up</a></li>
-            {{!-- <li> <a href="/signup">Sign Up</a></li> --}}
+            <li> <a href="/login">Log In</a></li>
+            <li> <a href="/signup">Sign Up</a></li>
           </ul>
+          {{/if}}
         </nav>
       </div>
     </header>
@@ -30,10 +26,9 @@
     <main>
       {{{body}}}
     </main>
-    {{!-- {{#if logged_in}}
+    {{#if logged_in}}
       <script src="/js/logout.js"></script>
-    {{/if}} --}}
-
+    {{/if}}
   </body>
 </html>
 
