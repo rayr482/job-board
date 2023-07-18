@@ -1,17 +1,17 @@
-// const sequelize = require('../config/connection');
-// const { Category } = require('../models');
+const sequelize = require('../config/connection');
+const { Category, User, Post } = require('../models');
 
-// const categoryData = require('./categoryData.json');
+const categoryData = require('./categoryData.json');
 
-// const seedDatabase = async () => {
-//   await sequelize.sync({ force: true });
+const seedDatabase = async () => {
+  await sequelize.sync({ force: true });
 
-//   await Category.bulkCreate(categoryData, {
-//     individualHooks: true,
-//     returning: true,
-//   });
+  await Category.bulkCreate(categoryData, {
+    individualHooks: true,
+    returning: true,
+  });
 
-//   process.exit(0);
-// };
+  process.exit(0);
+};
 
-// seedDatabase();
+seedDatabase();
