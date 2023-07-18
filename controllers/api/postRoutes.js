@@ -38,7 +38,7 @@ router.get('/:id', async (req, res) => {
     });
 
     if (!postData) {
-      res.status(404).json({ message: "No post found with this ID." });
+      res.status(404).json({ message: 'No post found with this ID' });
       return;
     }
 
@@ -71,7 +71,7 @@ router.post('/', async (req, res) => {
       });
   
       if (!postData) {
-        res.status(404).json({ message: 'No post found with this ID.' });
+        res.status(404).json({ message: 'No post found with this ID' });
         return;
       }
   
