@@ -12,28 +12,15 @@ const newPostHandler = async (event) => {
         "Content-Type": "application/json",
       },
     });
+    
     if (response.ok) {
         document.location.replace('/posts');
     } else {
-        alert('Failed to create posts');
+        alert('Failed to create post');
     }
   }
 };
 
-const delPostHandler = async (event) => {
-    if (event.target.hasAttribute('data-id')) {
-        const id = event.target.getAttribute('data-id');
-
-        const response = await fetch(`/api/posts/${id}`, {
-          method: 'DELETE',
-        });
-        if (response.ok) {
-            document.location.replace('/posts');
-          } else {
-            alert('Failed to delete project');
-          }
-    
-    }
-
-    
-}
+document
+  .querySelector('.new-post-form')
+  .addEventListener('submit', newPostHandler);
