@@ -9,13 +9,20 @@ router.get('/posts', async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ['name'],
+          attributes: ['id','name'],
         },
       ],
     });
 
     // Serialize data so the template can read it
     const posts = postData.map((project) => project.get({ plain: true }));
+    console.log(posts);
+    posts.forEach(post => {
+      // check if post user ID matches the user's ID,
+      post.isUsersPost = req.session.user_id === post.user_id
+      // if yes set post.isuserspost
+    //  FOCUS ON THIS ISSUE
+    });
     // Pass serialized data and session flag into template
     res.render('all-posts', { 
       layout: 'main',
