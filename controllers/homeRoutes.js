@@ -13,7 +13,7 @@ router.get('/posts', async (req, res) => {
         },
       ],
     });
-
+    console.log(postData);
     // Serialize data so the template can read it
     const posts = postData.map((project) => project.get({ plain: true }));
     console.log(posts);
@@ -38,12 +38,12 @@ router.get("/", withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ["password"] },
+      attributes: { exclude: ['password'] },
       include: [{ model: Post }],
     });
     const user = userData.get({ plain: true });
 
-    res.render('home', {
+    res.render('all-posts', {
       // layout: 'main'
       ...user,
       logged_in: true,
@@ -56,10 +56,16 @@ router.get("/", withAuth, async (req, res) => {
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
-    res.redirect('/');
+    res.redirect('/posts');
     return;
     }
     res.render('login');
+});
+
+router.get('/new-post', (req, res) => {
+  res.render('create-post', {
+    layout: 'main'
+  });
 });
 
 module.exports = router;

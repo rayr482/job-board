@@ -1,15 +1,15 @@
 const delPostHandler = async (event) => {
-  if (event.target.hasAttribute("data-id")) {
-    const id = event.target.getAttribute("data-id");
+  if (event.target.hasAttribute('data-id')) {
+    const id = event.target.getAttribute('data-id');
 
     const response = await fetch(`/api/posts/${id}`, {
-      method: "DELETE",
+      method: 'DELETE',
     });
     
     if (response.ok) {
-      document.location.replace("/posts");
+      document.location.replace('/posts');
     } else {
-      alert("Failed to delete post");
+      alert('Failed to delete post');
     }
   }
 };
