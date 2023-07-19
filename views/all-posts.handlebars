@@ -1,12 +1,14 @@
 <div>
     {{#each posts as |post| }}
     <div>
-<h1>{{post.subject}}</h1>
-<h2>{{post.message}}</h2>
-<h2>Post made by: {{post.user.name}}</h2>
+        <h1>{{post.subject}}</h1>
+        <h2>{{post.message}}</h2>
+        <h2>Post made by: {{post.user.name}}</h2>
     </div>
-{{#if post.isUsersPost}} 
-  <h2>Testing</h2>
-{{/if}} 
+
+    {{#if post.isUsersPost}} 
+    <h2>Testing</h2>
+    {{/if}} 
+
     {{/each}}
 </div>
