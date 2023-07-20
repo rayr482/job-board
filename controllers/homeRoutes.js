@@ -63,4 +63,11 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
+router.get('/new-post', (req, res) => {
+  // If the user is already logged in, redirect the request to another route
+    res.render('create-post', {
+      layout: 'main'
+    });
+});
+
 module.exports = router;
