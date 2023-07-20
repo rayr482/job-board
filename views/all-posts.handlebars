@@ -7,8 +7,12 @@
     </div>
 
     {{#if post.isUsersPost}} 
-    <h2>Testing</h2>
+    <div class="post-list">
+        <button class="btn btn-sm btn-danger" data-id="{{post.id}}" type="click">DELETE</button>
+    </div>
     {{/if}} 
 
     {{/each}}
 </div>
+
+<script src="js/delPost.js"></script>
