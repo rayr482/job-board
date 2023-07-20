@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { User, Post } = require("../models");
 const withAuth = require("../utils/auth");
 
-router.get('/posts', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
   try {
     // Get all projects and JOIN with user data
     const postData = await Post.findAll({
@@ -21,7 +21,7 @@ router.get('/posts', async (req, res) => {
       // check if post user ID matches the user's ID,
       post.isUsersPost = req.session.user_id === post.user_id
       // if yes set post.isuserspost
-    //  FOCUS ON THIS ISSUE
+    
     });
     // Pass serialized data and session flag into template
     res.render('all-posts', { 
@@ -33,25 +33,26 @@ router.get('/posts', async (req, res) => {
     res.status(500).json(err);
   }
 });
-// Use withAuth middleware to prevent access to route
-router.get("/", withAuth, async (req, res) => {
-  try {
-    // Find the logged in user based on the session ID
-    const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ["password"] },
-      include: [{ model: Post }],
-    });
-    const user = userData.get({ plain: true });
 
-    res.render('home', {
-      // layout: 'main'
-      ...user,
-      logged_in: true,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+// Use withAuth middleware to prevent access to route
+// router.get('/', withAuth, async (req, res) => {
+//   try {
+//     // Find the logged in user based on the session ID
+//     const userData = await User.findByPk(req.session.user_id, {
+//       attributes: { exclude: ["password"] },
+//       include: [{ model: Post }],
+//     });
+//     const user = userData.get({ plain: true });
+
+//     res.render('all-posts', {
+//       // layout: 'main',
+//       ...user,
+//       logged_in: true,
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route

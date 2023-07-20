@@ -7,7 +7,7 @@ const delPostHandler = async (event) => {
     });
     
     if (response.ok) {
-      document.location.replace("/posts");
+      document.location.replace("/");
     } else {
       alert("Failed to delete post");
     }
