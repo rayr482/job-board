@@ -2,6 +2,19 @@
   <h2>{{subject}}</h2>
   <p>{{message}}</p>
   <p>Created by {{user.name}} </p>
-  <p>{{content}}</p>
+
+  <h2>Comments</h2>
+  <ul>
+    {{#each comments as |comment|}}
+    <li>
+      <h3>{{comment.user.name}}</h3>
+      <p>{{comment.content}}</p>
+    </li>
+    {{/each}}
+  </ul>
+
+  <h2>
+    <a href="/make-comment">Make a Comment</a>
+  </h2>
   {{!-- on {{format_date date_created}} --}}
 </div>

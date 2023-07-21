@@ -42,6 +42,13 @@ router.get('/post/:id', async (req, res) => {
           model: User,
           attributes: ['name'],
         },
+        {
+          model: Comment,
+          include: {
+            model: User,
+            attributes: ['name']
+          }
+        }
       ],
     });
 
@@ -89,6 +96,13 @@ router.get('/login', (req, res) => {
 router.get('/new-post', (req, res) => {
   // If the user is already logged in, redirect the request to another route
     res.render('create-post', {
+      layout: 'main'
+    });
+});
+
+router.get('/make-comment', (req, res) => {
+  // If the user is already logged in, redirect the request to another route
+    res.render('make-comment', {
       layout: 'main'
     });
 });
