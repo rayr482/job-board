@@ -1,13 +1,15 @@
-<div>
+<div class="post-list">
     {{#each posts as |post| }}
     <div>
-        <h1>{{post.subject}}</h1>
+        <h1>
+            <a href="/post/{{post.id}}">{{post.subject}}</a>
+        </h1>
         <h2>{{post.message}}</h2>
         <h2>Post made by: {{post.user.name}}</h2>
     </div>
 
     {{#if post.isUsersPost}} 
-    <div class="post-list">
+    <div>
         <button class="btn btn-sm btn-danger" data-id="{{post.id}}" type="click">DELETE</button>
     </div>
     {{/if}} 

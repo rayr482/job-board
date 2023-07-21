@@ -34,6 +34,29 @@ router.get('/', withAuth, async (req, res) => {
   }
 });
 
+router.get('/post/:id', async (req, res) => {
+  try {
+    const postData = await Post.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+      ],
+    });
+
+    const post = postData.get({ plain: true });
+
+    res.render('select-post', {
+      // layout: 'main',
+      ...post,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // Use withAuth middleware to prevent access to route
 // router.get('/', withAuth, async (req, res) => {
 //   try {
@@ -61,6 +84,13 @@ router.get('/login', (req, res) => {
     return;
     }
     res.render('login');
+});
+
+router.get('/new-post', (req, res) => {
+  // If the user is already logged in, redirect the request to another route
+    res.render('create-post', {
+      layout: 'main'
+    });
 });
 
 module.exports = router;
