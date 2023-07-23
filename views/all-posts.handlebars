@@ -5,7 +5,7 @@
             <a href="/post/{{post.id}}">{{post.subject}}</a>
         </h1>
         <h2>{{post.message}}</h2>
-        <h2>Post made by: {{post.user.name}}</h2>
+        <h2>Post made by: {{post.user.name}} on {{format_date post.date_created}} {{format_time post.date_created}}</h2>
     </div>
 
     {{#if post.isUsersPost}} 
