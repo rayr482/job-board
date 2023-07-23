@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { User, Post, Comment } = require("../models");
 const withAuth = require("../utils/auth");
+const nodemailer = require("nodemailer");
 
 router.get('/', withAuth, async (req, res) => {
   try {
@@ -38,17 +39,11 @@ router.get('/post/:id', async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
       include: [
-        {
-          model: User,
-          attributes: ['name'],
-        },
+        User,
         {
           model: Comment,
-          include: {
-            model: User,
-            attributes: ['name']
-          }
-        }
+          include: [User],
+        },
       ],
     });
 
@@ -61,6 +56,47 @@ router.get('/post/:id', async (req, res) => {
     });
   } catch (err) {
     res.status(500).json(err);
+  }
+});
+
+router.post("/post:id", async (req, res) => {
+  try {
+    const transporter = nodemailer.createTransport({
+      host: "smtp.ethereal.email",
+      port: 587,
+      auth: {
+        user: "tad45@ethereal.email",
+        pass: "1xaPqRk8FKHKvyNVhK",
+      },
+    });
+    console.log('+=+=+=+=')
+    console.log(req.body);
+    // send mail with defined transport object
+    const info = await transporter.sendMail({
+      from: req.body.senderEmail, // sender address
+      to: req.body.recieverEmail, // list of receivers
+      subject: "New Comment on your Post", // Subject line
+      text: req.body.comment.content, // plain text body
+      html: req.body.comment.content, // html body
+    });
+
+    console.info(info);
+
+    if (info.error) {
+      res.render("select-post", {
+        message: "couldnt notify poster",
+        text: info.error,
+        logged_in: req.session.logged_in
+      });
+    } else {
+      console.log("Message sent: %s", info.messageId);
+      res.render("select-post", {
+        message: "your comment has been sent",
+        text: info.messageId,
+      });
+    }
+  } catch (err) {
+    res.status(400).json(err);
   }
 });
 
