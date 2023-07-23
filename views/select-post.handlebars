@@ -9,6 +9,7 @@
     <li>
       <h3>{{comment.user.name}}</h3>
       <p>{{comment.content}}</p>
+      <p>Commented on {{format_date comment.date_created}} {{format_time comment.date_created}}</p>
     </li>
     {{/each}}
   </ul>
@@ -18,3 +19,4 @@
   </h2>
   {{!-- on {{format_date date_created}} --}}
 </div>
+{{!-- <script src="/utils/helpers.js"></script> --}}

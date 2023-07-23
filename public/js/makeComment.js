@@ -1,6 +1,7 @@
 const newCommentHandler = async (event) => {
   event.preventDefault();
 
+
   const content = document.querySelector("#comment-content").value.trim();
 //   const user = document.querySelector("#comment-user").value.trim();
   const urlParams = new URLSearchParams(window.location.search);
@@ -10,7 +11,6 @@ const newCommentHandler = async (event) => {
   // console.log("Content:", content);
   // console.log("User:", user);
   // console.log("Post ID:", postId);
-
 
   if (content && postId) {
     const response = await fetch('/api/comments', {
