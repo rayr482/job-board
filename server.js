@@ -4,7 +4,8 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers');
-// const helpers = require('./utils/helpers');
+// const dateFns = require('date-fns');
+const helpers = require('./utils/helpers');
 
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -55,7 +56,7 @@ const PORT = process.env.PORT || 3001;
 const PORT2 = process.env.PORT || 3000;
 
 // Set up Handlebars.js engine with custom helpers
-const hbs = exphbs.create();
+const hbs = exphbs.create({ helpers });
 
 const sess = {
   secret: 'Super secret secret',
@@ -87,9 +88,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
 
-app.get('/', (res,req) => {
-  res.send('Hello');
-});
+// app.get('/', (res,req) => {
+//   res.send('Hello');
+// });
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening on 3001'));
