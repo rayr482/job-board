@@ -9,15 +9,15 @@ Post.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     subject: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     message: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
     },
     date_created: {
       type: DataTypes.DATE,
@@ -28,15 +28,15 @@ Post.init(
         type: DataTypes.INTEGER,
         references: {
           model: 'user',
-          key: 'id'
-        }
+          key: 'id',
+        },
     },
     category_id: {
         type: DataTypes.INTEGER,
         references: {
           model: 'category',
-          key: 'id'
-        }
+          key: 'id',
+        },
     },
   },
   {
@@ -44,7 +44,7 @@ Post.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'post'
+    modelName: 'post',
   }
 );
 

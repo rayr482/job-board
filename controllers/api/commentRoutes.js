@@ -1,13 +1,13 @@
-const router = require("express").Router();
-const { Category, Comment, Post, User } = require("../../models");
+const router = require('express').Router();
+const { Category, Comment, Post, User } = require('../../models');
 
-router.get("/", async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const commentData = await Comment.findAll({
       include: [
         {
           model: Category,
-          attributes: ["category_name"]
+          attributes: ['category_name']
         },
         {
           model: Post,
@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
         },
         {
           model: User,
-          attributes: ["name"]
+          attributes: ['name']
         }
       ]
     });
@@ -26,21 +26,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Original "post":
-// router.post("/", async (req, res) => {
-//   try {
-//     const newComment = await Comment.create({
-//       ...req.body,
-//       user_id: req.session.user_id,
-//     });
-
-//     res.status(200).json(newComment);
-//   } catch (err) {
-//     res.status(400).json(err);
-//   }
-// });
-
-router.post("/", async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const { post_id, content } = req.body;
     const user_id = req.session.user_id;

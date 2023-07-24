@@ -1,7 +1,7 @@
-const router = require("express").Router();
-const { User, Post, Comment } = require("../models");
-const withAuth = require("../utils/auth");
-const nodemailer = require("nodemailer");
+const router = require('express').Router();
+const { User, Post, Comment } = require('../models');
+const withAuth = require('../utils/auth');
+const nodemailer = require('nodemailer');
 
 router.get('/', withAuth, async (req, res) => {
   try {
@@ -50,7 +50,7 @@ router.get('/post/:id', async (req, res) => {
     const post = postData.get({ plain: true });
 
     res.render('select-post', {
-      // layout: 'main',
+      layout: 'main',
       ...post,
       logged_in: req.session.logged_in
     });
@@ -59,14 +59,14 @@ router.get('/post/:id', async (req, res) => {
   }
 });
 
-router.post("/post/:id", async (req, res) => {
+router.post('/post/:id', async (req, res) => {
   try {
     const transporter = nodemailer.createTransport({
-      host: "smtp.ethereal.email",
+      host: 'smtp.ethereal.email',
       port: 587,
       auth: {
-        user: "verona71@ethereal.email",
-        pass: "bXgeg1wkfn2jdhDQYA"
+        user: 'verona71@ethereal.email',
+        pass: 'bXgeg1wkfn2jdhDQYA'
       },
     });
 
@@ -79,15 +79,15 @@ router.post("/post/:id", async (req, res) => {
   
   transporter.sendMail(mailOptions, function(error, info){
     if (error) {
-      res.render("select-post", {
-            message: "couldnt notify poster",
+      res.render('select-post', {
+            message: 'couldnt notify poster',
             text: info.error,
             logged_in: req.session.logged_in
           });
     } else {
       console.log('Email sent: ' + info.response);
-      res.render("select-post", {
-            message: "your comment has been sent",
+      res.render('select-post', {
+            message: 'Your comment has been sent',
             text: info.messageId,
           });
     }
@@ -123,7 +123,7 @@ router.get('/make-comment', (req, res) => {
 
 module.exports = router;
 
-// original code
+// original code - keeping for future development
     // if (info.error) {
     //   res.render("select-post", {
     //     message: "couldnt notify poster",
@@ -138,7 +138,6 @@ module.exports = router;
     //   });
     // }
 
-      // original code
     // send mail with defined transport object
     // const info = await transporter.sendMail({
     //   from: req.body.senderEmail, // sender address

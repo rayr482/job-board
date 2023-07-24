@@ -39,7 +39,9 @@ If it is the first time to the site, the user will sign up with their name, emai
 
 
 ## Screenshots
-![Example screenshot](./img/screenshot.png)
+![Example screenshot](./assets/git-a-job.png)
+![Example screenshot](./assets/git-a-job2.png)
+![Example screenshot](./assets/git-a-job3.png)
 <!-- If you have screenshots you'd like to share, include them here. -->
 
 
@@ -68,8 +70,8 @@ Project is: _in progress_.
 - Add attachments like resumes/CV to a post.
 - Like button for posts and comments.
 - API for job listings.
-- Search bar.
-- Filtering by job categories.
+- Use a search bar to filter by job categories.
+- NODEMAILER!
 
 
 ## Acknowledgements
