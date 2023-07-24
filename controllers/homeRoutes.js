@@ -17,7 +17,7 @@ router.get('/', withAuth, async (req, res) => {
 
     // Serialize data so the template can read it
     const posts = postData.map((project) => project.get({ plain: true }));
-    console.log(posts);
+
     posts.forEach(post => {
       // check if post user ID matches the user's ID,
       post.isUsersPost = req.session.user_id === post.user_id
@@ -65,21 +65,11 @@ router.post("/post/:id", async (req, res) => {
       host: "smtp.ethereal.email",
       port: 587,
       auth: {
-        user: "tad45@ethereal.email",
-        pass: "1xaPqRk8FKHKvyNVhK",
+        user: "verona71@ethereal.email",
+        pass: "bXgeg1wkfn2jdhDQYA"
       },
     });
-    console.log('+=+=+=+=')
-    console.log(req.body);
-    // original code
-    // send mail with defined transport object
-    // const info = await transporter.sendMail({
-    //   from: req.body.senderEmail, // sender address
-    //   to: req.body.recieverEmail, // list of receivers
-    //   subject: "New Comment on your Post", // Subject line
-    //   text: req.body.comment.content, // plain text body
-    //   html: req.body.comment.content, // html body
-    // });
+
     const mailOptions = {
     from: 'gitajob@yahoo.com',
     to: 'gitajob@yahoo.com',
@@ -89,50 +79,24 @@ router.post("/post/:id", async (req, res) => {
   
   transporter.sendMail(mailOptions, function(error, info){
     if (error) {
-      console.log(error);
+      res.render("select-post", {
+            message: "couldnt notify poster",
+            text: info.error,
+            logged_in: req.session.logged_in
+          });
     } else {
       console.log('Email sent: ' + info.response);
+      res.render("select-post", {
+            message: "your comment has been sent",
+            text: info.messageId,
+          });
     }
   });
 
-// original code
-    // if (info.error) {
-    //   res.render("select-post", {
-    //     message: "couldnt notify poster",
-    //     text: info.error,
-    //     logged_in: req.session.logged_in
-    //   });
-    // } else {
-    //   console.log("Message sent: %s", info.messageId);
-    //   res.render("select-post", {
-    //     message: "your comment has been sent",
-    //     text: info.messageId,
-    //   });
-    // }
   } catch (err) {
     res.status(400).json(err);
   }
 });
-
-// Use withAuth middleware to prevent access to route
-// router.get('/', withAuth, async (req, res) => {
-//   try {
-//     // Find the logged in user based on the session ID
-//     const userData = await User.findByPk(req.session.user_id, {
-//       attributes: { exclude: ["password"] },
-//       include: [{ model: Post }],
-//     });
-//     const user = userData.get({ plain: true });
-
-//     res.render('all-posts', {
-//       // layout: 'main',
-//       ...user,
-//       logged_in: true,
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
 
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
@@ -158,3 +122,28 @@ router.get('/make-comment', (req, res) => {
 });
 
 module.exports = router;
+
+// original code
+    // if (info.error) {
+    //   res.render("select-post", {
+    //     message: "couldnt notify poster",
+    //     text: info.error,
+    //     logged_in: req.session.logged_in
+    //   });
+    // } else {
+    //   console.log("Message sent: %s", info.messageId);
+    //   res.render("select-post", {
+    //     message: "your comment has been sent",
+    //     text: info.messageId,
+    //   });
+    // }
+
+      // original code
+    // send mail with defined transport object
+    // const info = await transporter.sendMail({
+    //   from: req.body.senderEmail, // sender address
+    //   to: req.body.recieverEmail, // list of receivers
+    //   subject: "New Comment on your Post", // Subject line
+    //   text: req.body.comment.content, // plain text body
+    //   html: req.body.comment.content, // html body
+    // });

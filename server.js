@@ -15,29 +15,29 @@ const app = express();
 const nodemailer = require('nodemailer');
 
 // Create a transporter object with your email service provider settings
-const transporter = nodemailer.createTransport({
-  host: "smtp.mail.yahoo.com",
-  port: 465,
-  secure: true,
-  auth: {
-    // TODO: replace `user` and `pass` values from <https://forwardemail.net>
-    user: 'gitajob@yahoo.com',
-    pass: '!2345678_9'
-  }
-});
+// const transporter = nodemailer.createTransport({
+//   host: "smtp.mail.yahoo.com",
+//   port: 465,
+//   secure: true,
+//   auth: {
+//     // TODO: replace `user` and `pass` values from <https://forwardemail.net>
+//     user: 'gitajob@yahoo.com',
+//     pass: '!2345678_9'
+//   }
+// });
 
-// async..await is not allowed in global scope, must use a wrapper
-async function main() {
-  // send mail with defined transport object
-  const info = await transporter.sendMail({
-    from: '"Fred Foo 👻" <foo@example.com>', // sender address
-    to: "bar@example.com, baz@example.com", // list of receivers
-    subject: "Hello ✔", // Subject line
-    text: "Hello world?", // plain text body
-    html: "<b>Hello world?</b>", // html body
-  });
+// // async..await is not allowed in global scope, must use a wrapper
+// async function main() {
+//   // send mail with defined transport object
+//   const info = await transporter.sendMail({
+//     from: '"Fred Foo 👻" <foo@example.com>', // sender address
+//     to: "bar@example.com, baz@example.com", // list of receivers
+//     subject: "Hello ✔", // Subject line
+//     text: "Hello world?", // plain text body
+//     html: "<b>Hello world?</b>", // html body
+//   });
 
-  console.log("Message sent: %s", info.messageId);
+//   console.log("Message sent: %s", info.messageId);
 
     // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
 
@@ -46,14 +46,14 @@ async function main() {
   //       Or you can use the "preview-email" npm package to preview emails locally in browsers and iOS Simulator
   //       <https://github.com/forwardemail/preview-email>
   //
-}
+// }
 
-main().catch(console.error);
+// main().catch(console.error);
 
 
 const PORT = process.env.PORT || 3001;
 
-const PORT2 = process.env.PORT || 3000;
+// const PORT2 = process.env.PORT || 3000;
 
 // Set up Handlebars.js engine with custom helpers
 const hbs = exphbs.create({ helpers });
@@ -96,4 +96,4 @@ sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening on 3001'));
 });
 
-app.listen(PORT2, () => console.log('Now listening on 3000'));
+// app.listen(PORT2, () => console.log('Now listening on 3000'));
