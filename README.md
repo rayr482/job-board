@@ -1,6 +1,6 @@
-# Tech Blog
-> Outline a brief description of your project.
-> Live demo [_here_](https://www.example.com). <!-- If you have the project hosted somewhere, include the link here. -->
+# Git a Job
+> An application that web developers can use to post about anything related to their job search and comment on posts giving specific feedback to each individual’s need.
+> Live demo [_here_](https://murmuring-sierra-21351-123e19ae1f23.herokuapp.com/login). <!-- If you have the project hosted somewhere, include the link here. -->
 
 ## Table of Contents
 * [General Info](#general-information)
@@ -17,24 +17,25 @@
 
 
 ## General Information
-- Provide general information about your project here.
-- What problem does it (intend to) solve?
-- What is the purpose of your project?
-- Why did you undertake it?
+If it is the first time to the site, the user will sign up with their name, email, and password to enter.  If the user has already signed up, they will login with their email and password.  Once logged in, all the posts that have been made will be displayed.  If they are the owner of the post, a delete button for that post will show so only they can delete it.  Then when an individual post is clicked on, it takes you to a page where the post is shown, comments made to that post are listed, and there is a clickable link to "Make a Comment."  When the "Make a Comment" link is clicked, the user can enter a comment to make on that post, and it will show up under the list of comments once it is submitted.  From there, the user can return to a list of all posts by clicking the "All Posts" link.
 <!-- You don't have to answer all the questions - just the ones relevant to your project. -->
 
 
 ## Technologies Used
-- Tech 1 - version 1.0
-- Tech 2 - version 2.0
-- Tech 3 - version 3.0
+- Node.js
+- Express.js
+- Handlebars.js
+- Express Session
+- MySQL
+- Sequelize ORM
+- Dotenv
+- Bcrypt
 
 
 ## Features
-List the ready features here:
-- Awesome feature 1
-- Awesome feature 2
-- Awesome feature 3
+- Date and time stamps for posts and comments.
+- Bcrypt hashes the password and if it matches, the user is able to login.
+- Delete button only shows for the owner of that post.
 
 
 ## Screenshots
@@ -43,43 +44,37 @@ List the ready features here:
 
 
 ## Setup
-What are the project requirements/dependencies? Where are they listed? A requirements.txt or a Pipfile.lock file perhaps? Where is it located?
-
-Proceed to describe how to install / setup one's local environment / get started with the project.
+In order to get started with the project, the database name and MySQL username and password must be added in the .env file.  In the terminal, use the commands to invoke MySQL, source the schema, seed the database with the test data, and run the application.  Use any of the login information in user-seeds.js to login or sign up with your own name, email, and password.
 
 
 ## Usage
-How does one go about using it?
-Provide various use cases and code examples here.
 
-`write-your-code-here`
+`npm i`
+
+`mysql -u root -p`
+
+`SOURCE db/schema.sql;`
+
+`npm run seed`
+
+`npm run start` 
 
 
 ## Project Status
-Project is: _in progress_ / _complete_ / _no longer being worked on_. If you are no longer working on it, provide reasons why.
+Project is: _in progress_.
 
 
 ## Room for Improvement
-Include areas you believe need improvement / could be improved. Also add TODOs for future development.
-
-Room for improvement:
-- Improvement to be done 1
-- Improvement to be done 2
-
-To do:
-- Feature to be added 1
-- Feature to be added 2
+- Add attachments like resumes/CV to a post.
+- Like button for posts and comments.
 
 
 ## Acknowledgements
-Give credit here.
-- This project was inspired by...
-- This project was based on [this tutorial](https://www.example.com).
-- Many thanks to...
+- Many thanks to our instructor, Michael Pacheco, the TAs, Nirav and Julius, and the tutors.
 
 
 ## Contact
-Created by [@flynerdpl](https://www.flynerd.pl/) - feel free to contact me!
+Created by Kristine Kim, Kevin Lewis, Raymond Rodriguez, and Francisco Verdugo Del Real.  Feel free to contact us at kristinehkim@gmail.com, kplewis33@gmail.com, rodriguezraymond482@gmail.com, fco.verdugo9@live.com!
 
 
 <!-- Optional -->
