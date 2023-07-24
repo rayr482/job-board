@@ -1,21 +1,21 @@
-const router = require("express").Router();
-const { Category, Post, User, Comment } = require("../../models");
+const router = require('express').Router();
+const { Category, Post, User, Comment } = require('../../models');
 
-router.get("/", async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const postData = await Post.findAll({
       include: [
         {
           model: Category,
-          attributes: ["category_name"],
+          attributes: ['category_name'],
         },
         {
           model: User,
-          attributes: ["name"]
+          attributes: ['name'],
         },
         {
           model: Comment,
-          attributes: ["content"]
+          attributes: ['content'],
         }
       ]
     });
@@ -26,27 +26,27 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
       include: [
         {
           model: Category,
-          attributes: ["category_name"],
+          attributes: ['category_name'],
         },
         {
           model: User,
-          attributes: ["name"],
+          attributes: ['name'],
         },
         {
           model: Comment,
-          attributes: ["content"],
+          attributes: ['content'],
         },
       ],
     });
 
     if (!postData) {
-      res.status(404).json({ message: "No post found with this ID" });
+      res.status(404).json({ message: 'No post found with this ID' });
       return;
     }
 
@@ -56,7 +56,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const newPost = await Post.create({
       ...req.body,
@@ -69,7 +69,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     const postData = await Post.destroy({
       where: {
@@ -79,7 +79,7 @@ router.delete("/:id", async (req, res) => {
     });
 
     if (!postData) {
-      res.status(404).json({ message: "No post found with this ID" });
+      res.status(404).json({ message: 'No post found with this ID' });
       return;
     }
 

@@ -62,6 +62,4 @@ router.post('/logout', (req, res) => {
   }
 });
 
-// Future deleted user code
-
 module.exports = router;
