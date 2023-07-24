@@ -67,6 +67,9 @@ Project is: _in progress_.
 ## Room for Improvement
 - Add attachments like resumes/CV to a post.
 - Like button for posts and comments.
+- API for job listings.
+- Search bar.
+- Filtering by job categories.
 
 
 ## Acknowledgements

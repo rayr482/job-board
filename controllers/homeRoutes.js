@@ -59,7 +59,7 @@ router.get('/post/:id', async (req, res) => {
   }
 });
 
-router.post("/post:id", async (req, res) => {
+router.post("/post/:id", async (req, res) => {
   try {
     const transporter = nodemailer.createTransport({
       host: "smtp.ethereal.email",
@@ -71,30 +71,44 @@ router.post("/post:id", async (req, res) => {
     });
     console.log('+=+=+=+=')
     console.log(req.body);
+    // original code
     // send mail with defined transport object
-    const info = await transporter.sendMail({
-      from: req.body.senderEmail, // sender address
-      to: req.body.recieverEmail, // list of receivers
-      subject: "New Comment on your Post", // Subject line
-      text: req.body.comment.content, // plain text body
-      html: req.body.comment.content, // html body
-    });
-
-    console.info(info);
-
-    if (info.error) {
-      res.render("select-post", {
-        message: "couldnt notify poster",
-        text: info.error,
-        logged_in: req.session.logged_in
-      });
+    // const info = await transporter.sendMail({
+    //   from: req.body.senderEmail, // sender address
+    //   to: req.body.recieverEmail, // list of receivers
+    //   subject: "New Comment on your Post", // Subject line
+    //   text: req.body.comment.content, // plain text body
+    //   html: req.body.comment.content, // html body
+    // });
+    const mailOptions = {
+    from: 'gitajob@yahoo.com',
+    to: 'gitajob@yahoo.com',
+    subject: 'Sending Email using Node.js',
+    text: 'That was easy!'
+  };
+  
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
     } else {
-      console.log("Message sent: %s", info.messageId);
-      res.render("select-post", {
-        message: "your comment has been sent",
-        text: info.messageId,
-      });
+      console.log('Email sent: ' + info.response);
     }
+  });
+
+// original code
+    // if (info.error) {
+    //   res.render("select-post", {
+    //     message: "couldnt notify poster",
+    //     text: info.error,
+    //     logged_in: req.session.logged_in
+    //   });
+    // } else {
+    //   console.log("Message sent: %s", info.messageId);
+    //   res.render("select-post", {
+    //     message: "your comment has been sent",
+    //     text: info.messageId,
+    //   });
+    // }
   } catch (err) {
     res.status(400).json(err);
   }
