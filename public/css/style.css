@@ -12,6 +12,7 @@ a {
   text-decoration: none;
   color: #01411c;
   cursor: pointer;
+  font-family: 'Ysabeau SC', sans-serif;
 }
 
 body {
@@ -24,6 +25,10 @@ body {
   font-size: 15px;
   padding: 10%;
   justify-content: center;
+}
+
+img {
+  position: relative;
 }
 
 nav {
@@ -44,11 +49,13 @@ nav ul li {
 li {
   list-style: none;
 }
+
 nav ul li a {
-  color: rgb(233, 183, 47);
+  color: #e9b72f;
   text-decoration: none;
   font-size: 30px;
   position: relative;
+  font-family: "Play", sans-serif;
 }
 
 nav ul li a::after {
@@ -65,18 +72,39 @@ nav ul li a::after {
 nav ul li a:hover::after {
   width: 100%;
 }
+
 div{
-    display: grid;
+  display: grid;
 }
+
+.post-subject {
+  font-size: 50px;
+  font-family: 'Ysabeau SC', sans-serif;
+}
+
+.post-message {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 24px;
+}
+
+.post-info {
+  padding-top: 10%;
+  font-size: 20px;
+  color: #4f4f4f
+}
+
+
 input{
-    font-size: 25px;
+  font-size: 25px;
 }
+
 #title {
   color: rgb(233, 183, 47);
   outline: black;
   text-align: center;
   font-size: 50px;
 }
+
 #post-list {
   display: grid;
   border-radius: 30px;
@@ -109,8 +137,9 @@ input{
 
  
 .subject{
-    font-size: 25px;
-    color: #01411c;
+  font-size: 25px;
+  color: #01411c;
+  font-family: 'Ysabeau SC', sans-serif;
 }
 
 .no-button {
@@ -126,6 +155,7 @@ input{
   border-radius: 10px;
   padding: 14px;
   align-items: right;
+  font-family: Play, sans-serif;
 }
 
 .btn-danger {
@@ -146,7 +176,7 @@ input{
 
 .subject,
 .message {
-    color: rgb(233, 183, 47);
+  color: rgb(233, 183, 47);
   flex-basis: 35%;
   font-size: 30px;
 }

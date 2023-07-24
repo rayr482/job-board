@@ -5,10 +5,10 @@
         <div class="post-container">
             
         <h1>
-          <a href="/post/{{post.id}}">{{post.subject}}</a>
+          <a class ="post-subject" href="/post/{{post.id}}">{{post.subject}}</a>
         </h1>
-        <h2>{{post.message}}</h2>
-        <h2>Post made by:
+        <h2 class="post-message">{{post.message}}</h2>
+        <h2 class="post-info">Post made by:
           {{post.user.name}}
           on
           {{format_date post.date_created}}
