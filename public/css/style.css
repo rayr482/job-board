@@ -29,6 +29,8 @@ body {
 
 img {
   position: relative;
+  width: 700px;
+  height: 100px;
 }
 
 nav {
@@ -93,6 +95,10 @@ div{
   color: #4f4f4f
 }
 
+#post-subject,
+#post-message {
+  width: 600px;
+}
 
 input{
   font-size: 25px;
@@ -136,11 +142,11 @@ input{
 }
 
  
-.subject{
+/* .subject{
   font-size: 25px;
   color: #01411c;
   font-family: 'Ysabeau SC', sans-serif;
-}
+} */
 
 .no-button {
   display: inline-block;
@@ -174,12 +180,12 @@ input{
   position: relative;
 }
 
-.subject,
+/* .subject,
 .message {
   color: rgb(233, 183, 47);
   flex-basis: 35%;
   font-size: 30px;
-}
+} */
 
 .contact-left p {
   margin-top: 30px;
@@ -189,12 +195,14 @@ input{
 }
 
 .subject,.message {
-    margin: 20px;
-    background-color: lightgray;
-    border-radius: 10px;
-    color: black;
-    justify-content: center;
-    
+  margin: 20px;
+  background-color: lightgray;
+  border-radius: 10px;
+  color: black;
+  justify-content: center !important;
+  flex-basis: 35%;
+  font-size: 30px;
+  font-family: 'Ysabeau SC', sans-serif;
 }
 
 .make-comment {
